@@ -7,6 +7,8 @@ LABEL Maintainer="Bronson Quick <bronson@bronsonquick.com.au>" \
 
 RUN apk --no-cache add bash \
     fcgi \
+    mariadb \
+    mariadb-client \
     nginx \
     openrc \
     php7 \
