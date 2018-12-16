@@ -8,6 +8,7 @@ LABEL Maintainer="Bronson Quick <bronson@bronsonquick.com.au>" \
 RUN apk --no-cache add bash \
     curl \
     fcgi \
+    git \
     imagemagick \
     mariadb \
     mariadb-client \
