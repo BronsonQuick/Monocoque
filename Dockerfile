@@ -10,6 +10,7 @@ RUN apk --no-cache add bash \
     fcgi \
     git \
     imagemagick \
+    less \
     mariadb \
     mariadb-client \
     nginx \
@@ -53,7 +54,12 @@ RUN apk --no-cache add bash \
     php7-xmlwriter \
     php7-xsl \
     php7-zip \
+    ruby \
+    shadow \
     supervisor
+
+# Install puppet
+RUN gem install puppet -v 3.8.7 --no-rdoc --no-ri
 
 # Make a directory for nginx.
 RUN mkdir -p /run/nginx
