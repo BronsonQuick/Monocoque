@@ -26,8 +26,10 @@ RUN chown -R www:www /var/www/html
 COPY .config/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY .config/nginx/site.nginx.conf /etc/nginx/sites-available/localhost
 RUN ln -fs /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/localhost
-COPY index.php /var/www/html/index.php
+COPY phpinfo.php /var/www/html/phpinfo.php
 COPY .config/php/php-pool.conf /etc/php7/php-fpm.d/zzz_custom_pool.conf
+COPY .config/php/php.ini /etc/php7/conf.d/zzz_custom_phpini.ini
+
 # Configure supervisord
 COPY .config/supervisord/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
