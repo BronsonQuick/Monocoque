@@ -6,14 +6,52 @@ LABEL Maintainer="Bronson Quick <bronson@bronsonquick.com.au>" \
       Description="A configurable WordPress container based on Chassis <https://chassis.io>"
 
 RUN apk --no-cache add bash \
+    curl \
     fcgi \
+    imagemagick \
     mariadb \
     mariadb-client \
     nginx \
     openrc \
     php7 \
+    php7-calendar \
     php7-cli \
+    php7-ctype \
+    php7-curl \
+    php7-dom \
+    php7-exif \
+    php7-fileinfo \
     php7-fpm \
+    php7-ftp \
+    php7-gd \
+    php7-gettext \
+    php7-gmagick \
+    php7-iconv \
+    php7-intl \
+    php7-json \
+    php7-mbstring \
+    php7-mcrypt \
+    php7-mysqli \
+    php7-opcache \
+    php7-pdo \
+    php7-pdo_mysql \
+    php7-phar \
+    php7-posix \
+    php7-session \
+    php7-shmop \
+    php7-simplexml \
+    php7-sockets \
+    php7-sodium \
+    php7-sysvmsg \
+    php7-sysvsem \
+    php7-sysvshm \
+    php7-tokenizer \
+    php7-wddx \
+    php7-xml \
+    php7-xmlreader \
+    php7-xmlwriter \
+    php7-xsl \
+    php7-zip \
     supervisor
 
 # Make a directory for nginx.
