@@ -5,14 +5,14 @@ FROM alpine:3.8
 LABEL Maintainer="Bronson Quick <bronson@bronsonquick.com.au>" \
       Description="A configurable WordPress container based on Chassis <https://chassis.io>"
 
-RUN apk --no-cache add bash \
+RUN apk --no-cache add avahi \
+    bash \
     curl \
     fcgi \
     git \
     imagemagick \
     less \
-    mariadb \
-    mariadb-client \
+    mysql \
     nginx \
     openrc \
     php7 \
