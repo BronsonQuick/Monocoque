@@ -1,0 +1,123 @@
+# Chassis Configuration
+#
+# This file is the default configuration for all projects. The fallback order of
+# configuration files is:
+#
+# - project/content/config.local.yaml   (project-specific overrides)
+# - project/content/config.yaml         (project-specific defaults)
+# - project/config.local.yaml          (global overrides)
+# - project/config.yaml                 (global defaults)
+
+# Domain names to use for Vagrant
+#
+# The first name will be used as the machine's name, subsequent names will be
+# aliased in your hosts file and in nginx
+#
+# (When overriding, include vagrant.local if you need it)
+hosts:
+    - vagrant.local
+
+# Site Configuration
+# (When overriding, include all values)
+site:
+    name: Chassis Site
+
+# IP address to use on the private network
+#
+# DHCP is used by default to assign IP addresses dynamically, override only if
+# you need a static IP for your box.
+#
+# Values: "dhcp", or any valid IP
+ip: dhcp
+
+# Ubuntu mirror to use during provisioning
+#
+# Packages are loaded from the built-in Ubuntu repositories, which can be slow
+# depending on your location. Override this option to use a local mirror
+# instead, which is typically faster.
+#
+# Can be set to Yes to automatically detect the closest mirror, No to use the
+# built-in repositories, or a mirror domain as a string.
+#
+# Values: Yes, No, or any mirror domain name e.g. http://mirror.optus.net/ubuntu/
+apt_mirror: No
+
+# Should we use multisite?
+# (Set to Yes for subdirectories)
+# Values: No, Yes, subdomains
+multisite: No
+
+# Database configuration
+# (When overriding, include all values)
+database:
+    name: wordpress
+    user: wordpress
+    password: vagrantpassword
+    prefix: wp_
+
+# Admin configuration
+# (When overriding, include all values)
+admin:
+    user: admin
+    email: admin@example.com
+    password: password
+
+# Paths
+#
+# If transplanting Chassis into an existing project, you can set these manually.
+# These can be set to absolute paths, or relative paths.
+paths:
+    # Base directory for reference. Relative to the Chassis directory.
+    base: .
+
+    # Where WordPress lives. Relative to the base directory.
+    wp: wp
+
+    # Content directory. Relative to the base directory.
+    content: content
+
+# Synced Folders
+#
+# You can sync as many folders as you like. We sync the nginx and php log folders by default.
+synced_folders:
+    logs/nginx: /var/log/nginx
+    logs/php: /var/log/php
+
+# Plugins
+#
+# Install and activate a list of plugins from wp.org
+#plugins:
+#    - query-monitor
+
+# Themes
+#
+# Install a list of themes, and activate the last one of them
+# NOTE: This will activate all themes going down the list, so might activate some activation actions within each
+#themes:
+#    - twentysixteen
+
+# Extensions
+#
+# Install a list of extensions automatically
+extensions:
+  - Chassis/Tester
+#  - git@github.com:Chassis/memcache.git
+
+# PHP version
+# Values: 5.6, 7.0, 7.1, 7.2 (or 5.6.30)
+php: 7.2
+
+# VirtualBox-specific customisations.
+virtualbox:
+    # Memory, in megabytes.
+    #
+    # (e.g. 1024)
+    memory: null
+
+    # CPU count.
+    #
+    # (e.g. 2)
+    cpus: null
+
+# NFS support. You should change this to Yes if you use VMWare
+nfs: No
