@@ -77,7 +77,6 @@ RUN /usr/bin/mysql_install_db
 COPY .config/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY .config/nginx/site.nginx.conf /etc/nginx/sites-available/localhost
 RUN ln -fs /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/localhost
-COPY phpinfo.php /var/www/html/phpinfo.php
 COPY .config/php/php-pool.conf /etc/php7/php-fpm.d/zzz_custom_pool.conf
 COPY .config/php/php.ini /etc/php7/conf.d/zzz_custom_phpini.ini
 COPY .config/avahi/avahi-daemon.conf /etc/avahi/avahi-daemon.conf
