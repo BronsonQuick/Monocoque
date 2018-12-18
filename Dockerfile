@@ -58,6 +58,9 @@ RUN apk --no-cache add avahi \
     shadow \
     supervisor
 
+# Remove the cache
+RUN rm -rf /var/cache/apk/*
+
 # Install puppet
 RUN gem install puppet -v 3.8.7 --no-rdoc --no-ri
 
@@ -78,7 +81,6 @@ COPY phpinfo.php /var/www/html/phpinfo.php
 COPY .config/php/php-pool.conf /etc/php7/php-fpm.d/zzz_custom_pool.conf
 COPY .config/php/php.ini /etc/php7/conf.d/zzz_custom_phpini.ini
 COPY .config/avahi/avahi-daemon.conf /etc/avahi/avahi-daemon.conf
-
 
 # Configure supervisord
 COPY .config/supervisord/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
