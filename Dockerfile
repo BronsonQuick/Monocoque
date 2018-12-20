@@ -9,7 +9,6 @@ RUN apk --no-cache add avahi \
     bash \
     curl \
     fcgi \
-    git \
     imagemagick \
     nginx \
     php7 \
