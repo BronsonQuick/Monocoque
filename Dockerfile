@@ -12,7 +12,6 @@ RUN apk --no-cache add avahi \
     git \
     imagemagick \
     less \
-    mysql \
     nginx \
     openrc \
     php7 \
