@@ -33,13 +33,6 @@ if ( ! defined( 'DB_HOST' ) || strpos( DB_HOST, '%%' ) !== false ) {
 	die(1);
 }
 
-// =======================
-// Load Chassis extensions
-// =======================
-if ( file_exists( dirname( __FILE__ ) . '/local-config-extensions.php' ) ) {
-	include( dirname( __FILE__ ) . '/local-config-extensions.php' );
-}
-
 // ==================
 // Set up WP location
 // ==================
