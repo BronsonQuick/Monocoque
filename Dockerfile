@@ -12,7 +12,6 @@ RUN apk --no-cache add avahi \
     git \
     imagemagick \
     nginx \
-    openrc \
     php7 \
     php7-calendar \
     php7-cli \
