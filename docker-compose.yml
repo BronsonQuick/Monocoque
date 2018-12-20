@@ -18,6 +18,8 @@ services:
             - .:/var/www/html
         networks:
             - chassis
+        env_file:
+            - config.env
 volumes:
     db-data:
 networks:
