@@ -7,12 +7,9 @@ services:
         volumes:
             - "db-data:/var/lib/mysql"
         ports:
-            - '3306'
-        environment:
-            MYSQL_ROOT_PASSWORD: wordpress
-            MYSQL_DATABASE: wordpress
-            MYSQL_USER: wordpress
-            MYSQL_PASSWORD: wordpress
+            - "3306:3306"
+        env_file:
+            - config.env
     php:
         image: chassis
         build: .
