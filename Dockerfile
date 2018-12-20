@@ -11,7 +11,6 @@ RUN apk --no-cache add avahi \
     fcgi \
     git \
     imagemagick \
-    less \
     nginx \
     openrc \
     php7 \
@@ -53,8 +52,6 @@ RUN apk --no-cache add avahi \
     php7-xmlwriter \
     php7-xsl \
     php7-zip \
-    ruby \
-    shadow \
     supervisor
 
 # Remove the cache
