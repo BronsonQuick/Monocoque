@@ -12,11 +12,12 @@ services:
             - config.env
     php:
         image: chassis
-        build: .
         ports:
             - "80:80"
         volumes:
             - .:/var/www/html
+        networks:
+            - chassis
 volumes:
     db-data:
 networks:
