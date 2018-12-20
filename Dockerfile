@@ -70,7 +70,6 @@ RUN mkdir -p /var/www/html
 
 RUN adduser -D -g 'www' www
 RUN chown -R www:www /var/www/html
-RUN /usr/bin/mysql_install_db
 
 # Copy the default Nginx configuration file.
 COPY .config/nginx/nginx.conf /etc/nginx/nginx.conf
