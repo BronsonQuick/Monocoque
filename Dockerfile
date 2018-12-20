@@ -55,9 +55,6 @@ RUN apk --no-cache add avahi \
 # Remove the cache
 RUN rm -rf /var/cache/apk/*
 
-# Install puppet
-RUN gem install puppet -v 3.8.7 --no-rdoc --no-ri
-
 # Make a directory for nginx.
 RUN mkdir -p /run/nginx
 RUN mkdir -p /etc/nginx/sites-enabled
