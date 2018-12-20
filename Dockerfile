@@ -71,6 +71,10 @@ RUN mkdir -p /var/www/html
 RUN adduser -D -g 'www' www
 RUN chown -R www:www /var/www/html
 
+# Install WP CLI
+RUN curl -o /usr/local/bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
+    && chmod +x /usr/local/bin/wp
+
 # Copy the default Nginx configuration file.
 COPY .config/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY .config/nginx/site.nginx.conf /etc/nginx/sites-available/localhost
