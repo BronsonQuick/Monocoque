@@ -1,0 +1,26 @@
+version: '3'
+services:
+    db:
+        image: mysql:5.7
+        networks:
+            - chassis
+        volumes:
+            - "db-data:/var/lib/mysql"
+        ports:
+            - '3306'
+        environment:
+            MYSQL_ROOT_PASSWORD: wordpress
+            MYSQL_DATABASE: wordpress
+            MYSQL_USER: wordpress
+            MYSQL_PASSWORD: wordpress
+    php:
+        image: chassis
+        build: .
+        ports:
+            - "80:80"
+        volumes:
+            - .:/var/www/html
+volumes:
+    db-data:
+networks:
+    chassis:
