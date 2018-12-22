@@ -5,8 +5,7 @@ FROM alpine:3.8
 LABEL Maintainer="Bronson Quick <bronson@bronsonquick.com.au>" \
       Description="A configurable WordPress container based on Chassis <https://chassis.io>"
 
-RUN apk --no-cache add avahi \
-    bash \
+RUN apk --no-cache add bash \
     curl \
     fcgi \
     git \
@@ -72,7 +71,6 @@ RUN ln -fs /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/localho
 COPY .config/php/php-pool.conf /etc/php7/php-fpm.d/zzz_custom_pool.conf
 COPY .config/php/php.ini /etc/php7/conf.d/zzz_custom_phpini.ini
 COPY .config/mailhog/mailhog.ini /etc/php7/conf.d/mailhog.ini
-COPY .config/avahi/avahi-daemon.conf /etc/avahi/avahi-daemon.conf
 
 # Upstream tarballs include ./wordpress/ so this gives us /usr/src/wordpress
 RUN curl -o latest.tar.gz -SL https://wordpress.org/latest.tar.gz \
