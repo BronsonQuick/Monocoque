@@ -18,7 +18,10 @@ services:
         ports:
             - "80:80"
         volumes:
-            - "./content:/var/www/html/wordpress/wp-content"
+            - "./content:/var/www/html/wp-content"
+            - "./content/themes:/var/www/html/wp-content/themes"
+            - "./content/plugins:/var/www/html/wp-content/plugins"
+            - "./content/mu-plugins:/var/www/html/wp-content/mu-plugins"
         networks:
             - chassis
         env_file:

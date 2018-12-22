@@ -79,12 +79,10 @@ RUN curl -o latest.tar.gz -SL https://wordpress.org/latest.tar.gz \
 	&& chown -R nobody.nobody /var/www/html
 
 # Copy the files we need
-#COPY index.php /var/www/html/index.php
 COPY phpinfo.php /var/www/html/phpinfo.php
-#COPY wp-config.php /var/www/html/wp-config.php
-#COPY local-config.php /var/www/html/local-config.php
-#COPY local-config-db.php /var/www/html/local-config-db.php
-COPY wp-cli.yml /var/www/html/wp-cli.yml
+COPY wp-config.php /var/www/html/wp-config.php
+COPY local-config-db.php /var/www/html/local-config-db.php
+COPY local-config.php /var/www/html/local-config.php
 
 # Install WP CLI
 RUN curl -o /usr/local/bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
