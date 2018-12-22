@@ -60,12 +60,7 @@ RUN mkdir -p /run/nginx
 RUN mkdir -p /etc/nginx/sites-enabled
 RUN mkdir -p /var/www/html
 
-RUN adduser -D -g 'www' www
-RUN chown -R www:www /var/www/html
-
-# Install WP CLI
-RUN curl -o /usr/local/bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
-    && chmod +x /usr/local/bin/wp
+RUN chown -R nobody.nobody /var/www
 
 # Copy the default Nginx configuration file.
 COPY .config/nginx/nginx.conf /etc/nginx/nginx.conf
@@ -74,6 +69,26 @@ RUN ln -fs /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/localho
 COPY .config/php/php-pool.conf /etc/php7/php-fpm.d/zzz_custom_pool.conf
 COPY .config/php/php.ini /etc/php7/conf.d/zzz_custom_phpini.ini
 COPY .config/avahi/avahi-daemon.conf /etc/avahi/avahi-daemon.conf
+
+# Upstream tarballs include ./wordpress/ so this gives us /usr/src/wordpress
+RUN curl -o latest.tar.gz -SL https://wordpress.org/latest.tar.gz \
+	&& tar -xzf latest.tar.gz -C /var/www/html/ \
+	&& rm latest.tar.gz \
+	&& mv /var/www/html/wordpress/* /var/www/html/ \
+	&& rmdir /var/www/html/wordpress/ \
+	&& chown -R nobody.nobody /var/www/html
+
+# Copy the files we need
+#COPY index.php /var/www/html/index.php
+COPY phpinfo.php /var/www/html/phpinfo.php
+#COPY wp-config.php /var/www/html/wp-config.php
+#COPY local-config.php /var/www/html/local-config.php
+#COPY local-config-db.php /var/www/html/local-config-db.php
+COPY wp-cli.yml /var/www/html/wp-cli.yml
+
+# Install WP CLI
+RUN curl -o /usr/local/bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
+    && chmod +x /usr/local/bin/wp
 
 # Configure supervisord
 COPY .config/supervisord/supervisord.conf /etc/supervisor/conf.d/supervisord.conf

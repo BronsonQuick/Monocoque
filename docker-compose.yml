@@ -11,11 +11,14 @@ services:
         env_file:
             - config.env
     php:
+        depends_on:
+          - db
         image: chassis
+        build: .
         ports:
             - "80:80"
         volumes:
-            - .:/var/www/html
+            - "./content:/var/www/html/wordpress/wp-content"
         networks:
             - chassis
         env_file:
