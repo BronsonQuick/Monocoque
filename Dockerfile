@@ -3,7 +3,7 @@ FROM alpine:3.8
 
 # Add in details so you can blame me when things break.
 LABEL Maintainer="Bronson Quick <bronson@bronsonquick.com.au>" \
-      Description="A configurable WordPress container based on Chassis <https://chassis.io>"
+      Description="A lightweight and functional WordPress, Nginx, MySQL and MailHog container"
 
 RUN apk --no-cache add bash \
     curl \
