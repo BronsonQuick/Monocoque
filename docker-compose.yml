@@ -26,6 +26,13 @@ services:
             - chassis
         env_file:
             - config.env
+    mailhog:
+        image: mailhog/mailhog
+        ports:
+            - "1025:1025"
+            - "8025:8025"
+        networks:
+            - chassis
 volumes:
     db-data:
 networks:

@@ -9,7 +9,10 @@ RUN apk --no-cache add avahi \
     bash \
     curl \
     fcgi \
+    git \
+    go \
     imagemagick \
+    libc-dev \
     nginx \
     php7 \
     php7-calendar \
@@ -68,6 +71,7 @@ COPY .config/nginx/site.nginx.conf /etc/nginx/sites-available/localhost
 RUN ln -fs /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/localhost
 COPY .config/php/php-pool.conf /etc/php7/php-fpm.d/zzz_custom_pool.conf
 COPY .config/php/php.ini /etc/php7/conf.d/zzz_custom_phpini.ini
+COPY .config/mailhog/mailhog.ini /etc/php7/conf.d/mailhog.ini
 COPY .config/avahi/avahi-daemon.conf /etc/avahi/avahi-daemon.conf
 
 # Upstream tarballs include ./wordpress/ so this gives us /usr/src/wordpress
@@ -77,6 +81,9 @@ RUN curl -o latest.tar.gz -SL https://wordpress.org/latest.tar.gz \
 	&& mv /var/www/html/wordpress/* /var/www/html/ \
 	&& rmdir /var/www/html/wordpress/ \
 	&& chown -R nobody.nobody /var/www/html
+
+RUN go get github.com/mailhog/mhsendmail
+RUN cp /root/go/bin/mhsendmail /usr/bin/mhsendmail
 
 # Copy the files we need
 COPY phpinfo.php /var/www/html/phpinfo.php
