@@ -5,13 +5,15 @@ FROM alpine:3.8
 LABEL Maintainer="Bronson Quick <bronson@bronsonquick.com.au>" \
       Description="A lightweight and functional WordPress, Nginx, MySQL and MailHog container"
 
-RUN apk --no-cache add bash \
-    curl \
-    fcgi \
+RUN apk --no-cache add --virtual build-dependencies \
     git \
     go \
+    libc-dev
+
+RUN apk --no-cache --virtual add bash \
+    curl \
+    fcgi \
     imagemagick \
-    libc-dev \
     nginx \
     php7 \
     php7-calendar \
@@ -54,8 +56,7 @@ RUN apk --no-cache add bash \
     php7-zip \
     supervisor
 
-# Remove the cache
-RUN rm -rf /var/cache/apk/*
+RUN go get github.com/mailhog/mhsendmail && cp /root/go/bin/mhsendmail /usr/bin/mhsendmail && apk del build-dependencies
 
 # Make a directory for nginx.
 RUN mkdir -p /run/nginx
@@ -79,9 +80,6 @@ RUN curl -o latest.tar.gz -SL https://wordpress.org/latest.tar.gz \
 	&& mv /var/www/html/wordpress/* /var/www/html/ \
 	&& rmdir /var/www/html/wordpress/ \
 	&& chown -R nobody.nobody /var/www/html
-
-RUN go get github.com/mailhog/mhsendmail
-RUN cp /root/go/bin/mhsendmail /usr/bin/mhsendmail
 
 # Copy the files we need
 COPY phpinfo.php /var/www/html/phpinfo.php
