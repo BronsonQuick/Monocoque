@@ -98,6 +98,11 @@ COPY .config/supervisord/supervisord.conf /etc/supervisor/conf.d/supervisord.con
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
+WORKDIR /var/www/html
+
+COPY entrypoint.sh /entrypoint.sh
+ENTRYPOINT [ "sh", "/entrypoint.sh" ]
+
 # Expose the default http and https ports.
 EXPOSE 80 443
 
