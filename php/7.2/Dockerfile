@@ -93,10 +93,6 @@ RUN curl -o /usr/local/bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh
 # Configure supervisord
 COPY config/supervisord/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-# Make the nginx logs available for Docker logs.
-RUN ln -sf /dev/stdout /var/log/nginx/access.log \
-    && ln -sf /dev/stderr /var/log/nginx/error.log
-
 WORKDIR /var/www/html
 
 COPY entrypoint.sh /entrypoint.sh
@@ -106,6 +102,6 @@ HEALTHCHECK --interval=5m --timeout=3s \
   CMD curl -f http://localhost/ || exit 1
 
 # Expose the default http and https ports.
-EXPOSE 80 443
+EXPOSE 9000
 
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
