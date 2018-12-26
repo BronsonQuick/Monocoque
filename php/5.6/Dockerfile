@@ -10,6 +10,9 @@ RUN apk --no-cache add --virtual build-dependencies \
     go \
     libc-dev
 
+# Configure Go
+ENV GOPATH /root/go
+
 RUN apk --no-cache --virtual add bash \
     curl \
     fcgi \
@@ -21,16 +24,16 @@ RUN apk --no-cache --virtual add bash \
     php5-curl \
     php5-dom \
     php5-exif \
-    php5-fileinfo \
+    # php5-fileinfo \
     php5-fpm \
     php5-ftp \
     php5-gd \
     php5-gettext \
-    php5-gmagick \
+    # php5-gmagick \
     php5-iconv \
     php5-intl \
     php5-json \
-    php5-mbstring \
+    # php5-mbstring \
     php5-mcrypt \
     php5-mysqli \
     php5-opcache \
@@ -38,19 +41,19 @@ RUN apk --no-cache --virtual add bash \
     php5-pdo_mysql \
     php5-phar \
     php5-posix \
-    php5-session \
+    # php5-session \
     php5-shmop \
-    php5-simplexml \
+    # php5-simplexml \
     php5-sockets \
-    php5-sodium \
+    # php5-sodium \
     php5-sysvmsg \
     php5-sysvsem \
     php5-sysvshm \
-    php5-tokenizer \
+    # php5-tokenizer \
     php5-wddx \
     php5-xml \
     php5-xmlreader \
-    php5-xmlwriter \
+    # php5-xmlwriter \
     php5-xsl \
     php5-zip \
     supervisor
