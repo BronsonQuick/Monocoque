@@ -14,7 +14,6 @@ RUN apk --no-cache --virtual add bash \
     curl \
     fcgi \
     imagemagick \
-    nginx \
     php7 \
     php7-calendar \
     php7-cli \
