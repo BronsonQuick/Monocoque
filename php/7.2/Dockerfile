@@ -98,9 +98,6 @@ WORKDIR /var/www/html
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT [ "sh", "/entrypoint.sh" ]
 
-HEALTHCHECK --interval=5m --timeout=3s \
-  CMD curl -f http://localhost/ || exit 1
-
 # Expose the default http and https ports.
 EXPOSE 9000
 
