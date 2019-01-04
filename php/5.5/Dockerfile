@@ -9,6 +9,7 @@ RUN apk --update --virtual add bash \
     curl \
     fcgi \
     imagemagick \
+    nginx \
     php \
     php-calendar \
     php-cli \
@@ -96,6 +97,6 @@ HEALTHCHECK --interval=5m --timeout=3s \
   CMD curl -f http://localhost/ || exit 1
 
 # Expose the default http and https ports.
-EXPOSE 9000
+EXPOSE 80 443
 
-CMD ["php-fpm"]
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]s
