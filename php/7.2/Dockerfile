@@ -65,10 +65,6 @@ RUN mkdir -p /var/www/html
 
 RUN chown -R nobody.nobody /var/www
 
-# Copy the default Nginx configuration file.
-COPY config/nginx/nginx.conf /etc/nginx/nginx.conf
-COPY config/nginx/site.nginx.conf /etc/nginx/sites-available/localhost
-RUN ln -fs /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/localhost
 COPY config/php/php-pool.conf /etc/php7/php-fpm.d/zzz_custom_pool.conf
 COPY config/php/php.ini /etc/php7/conf.d/zzz_custom_phpini.ini
 COPY config/mailhog/mailhog.ini /etc/php7/conf.d/mailhog.ini
