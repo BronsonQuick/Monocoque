@@ -61,17 +61,14 @@ RUN apk --no-cache --virtual add bash \
 
 RUN go get github.com/mailhog/mhsendmail && cp /root/go/bin/mhsendmail /usr/bin/mhsendmail && apk del build-dependencies
 
-# Make a directory for nginx.
+# Setup nginx.
+RUN adduser -D -g 'www' www
 RUN mkdir -p /run/nginx
 RUN mkdir -p /etc/nginx/sites-enabled
 RUN mkdir -p /var/www/html
+RUN chown -R www:www /var/lib/nginx
+RUN chown -R www:www /var/www/html
 
-RUN chown -R nobody.nobody /var/www
-
-# Copy the default Nginx configuration file.
-COPY config/nginx/nginx.conf /etc/nginx/nginx.conf
-COPY config/nginx/site.nginx.conf /etc/nginx/sites-available/localhost
-RUN ln -fs /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/localhost
 COPY config/php/php-pool.conf /etc/php5/php-fpm.d/zzz_custom_pool.conf
 COPY config/php/php.ini /etc/php5/conf.d/zzz_custom_phpini.ini
 COPY config/mailhog/mailhog.ini /etc/php5/conf.d/mailhog.ini
