@@ -66,20 +66,13 @@ RUN adduser -D -g 'www' www
 RUN mkdir -p /run/nginx
 RUN mkdir -p /etc/nginx/sites-enabled
 RUN mkdir -p /var/www/html
+RUN mkdir -p /.wp-cli/cache/
 RUN chown -R www:www /var/lib/nginx
 RUN chown -R www:www /var/www/html
 
 COPY config/php/php-pool.conf /etc/php5/php-fpm.d/zzz_custom_pool.conf
 COPY config/php/php.ini /etc/php5/conf.d/zzz_custom_phpini.ini
 COPY config/mailhog/mailhog.ini /etc/php5/conf.d/mailhog.ini
-
-# Upstream tarballs include ./wordpress/ so this gives us /usr/src/wordpress
-RUN curl -o latest.tar.gz -SL https://wordpress.org/latest.tar.gz \
-	&& tar -xzf latest.tar.gz -C /var/www/html/ \
-	&& rm latest.tar.gz \
-	&& mv /var/www/html/wordpress/* /var/www/html/ \
-	&& rmdir /var/www/html/wordpress/ \
-	&& chown -R nobody.nobody /var/www/html
 
 # Copy the files we need
 COPY phpinfo.php /var/www/html/phpinfo.php
