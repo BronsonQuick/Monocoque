@@ -57,6 +57,7 @@ RUN adduser -D -g 'www' www
 RUN mkdir -p /run/nginx
 RUN mkdir -p /etc/nginx/sites-enabled
 RUN mkdir -p /var/www/html
+RUN mkdir -p /var/lib/nginx
 RUN chown -R www:www /var/lib/nginx
 RUN chown -R www:www /var/www/html
 
