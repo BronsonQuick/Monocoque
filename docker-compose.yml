@@ -13,7 +13,7 @@ services:
     php:
         depends_on:
           - db
-        image: monocoque/monocoque:7.2
+        image: monocoque/monocoque:7.4
         ports:
             - "80:80"
             - "443:443"
